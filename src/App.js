@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import axios from "axios";
+import {} from "./components";
 
 function App() {
+  const [tweets, setTweets] = React.useState([])
+
+  React.useEffect(() => {
+    const getTweets = async() => {
+      const {data} = await axios.get('api/tweets')
+      setTweets(data)
+    }
+    getTweets()
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <ul>{console.log(tweets)}
+      {tweets?.map((array) => {
+        array.map((value, i) => <li key={i}>{value}</li>)
+      })}
+    </ul>
+    </>
   );
 }
 
