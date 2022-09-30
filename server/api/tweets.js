@@ -15,20 +15,21 @@ router.get("/", async (req, res, next) => {
     });
 
     if (!data) throw new Error("Couldn't find user")
-    const mlValues = []
+    // let mlValues;
 
-    // Load the model.
-    use.load().then(model => {
-        // Embed an array of sentences.
-        const sentences = data.map(tweet => tweet.text);
-        model.embed(sentences).then(embeddings => {
-            // `embeddings` is a 2D tensor consisting of the 512-dimensional embeddings for each sentence.
-            // So in this example `embeddings` has the shape [2, 512].
-            embeddings.print(true /* verbose */);
-        });
-    });
+    // // Load the model.
+    // use.load().then(model => {
+    //     // Embed an array of sentences.
+    //     const sentences = data.map(tweet => tweet.text);
+    //     model.embed(sentences).then(embeddings => {
+    //       // `embeddings` is a 2D tensor consisting of the 512-dimensional embeddings for each sentence.
+    //       // So in this example `embeddings` has the shape [2, 512].
+    //       embeddings.print(true /* verbose */);
+    //       console.log(embeddings.values)
+    //     })
+    // });
 
-    res.send(mlValues)
+    res.send(data)
   } catch (error) {
     next(error);
   }
