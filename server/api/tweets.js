@@ -1,31 +1,23 @@
 const router = require("express").Router();
-const { Client } = require("twitter-api-sdk")
 const needle = require('needle');
 require('@tensorflow/tfjs');
 
-const use = require('@tensorflow-models/universal-sentence-encoder');
 const userId = '2704294333';
-const client = new Client(process.env.TWITTER_BEARER_TOKEN);
 const endpointUrl = "https://api.twitter.com/2/tweets/search/recent";
 const userEndpointUrl = `https://api.twitter.com/2/users/${userId}/tweets`;
 
 
 router.get("/", async (req, res, next) => {
   try {
-    // const { data } = await client.tweets.tweetsRecentSearch({
-    //     query: '#ES_F',
-    //     max_results: 100,
-    //     start_time: '2022-09-28T09:00:00Z',
-    // });
 
     const params = {
-      // 'query': 'from:deltaone',
-      'max_results': 20
+      'query': '#ES_F',
+      'max_results': 100
     }
 
-    let userTweets = [];
+    // let userTweets = [];
 
-    const result = await needle('get', userEndpointUrl, params, {
+    const result = await needle('get', endpointUrl, params, {
         headers: {
             "User-Agent": "v2RecentSearchJS",
             "authorization": `Bearer ${'AAAAAAAAAAAAAAAAAAAAADWLhgEAAAAAPLW6bDzXq7msHWXxjsDUZ7yanVY%3D9YU2MZl0i3bwbvmoBxcmKQFssbMWGDTZTemJR73s0PggODLnVd'}`
