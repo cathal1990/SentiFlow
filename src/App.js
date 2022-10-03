@@ -16,10 +16,13 @@ function App() {
 
   const [tweets, setTweets] = React.useState([])
   const [tweetsVisible, setTweetsVisible] = React.useState(false)
+  const [userInput, setUserInput] = React.useState('')
   const [metadata, setMetadata] = React.useState();
   const [model, setModel] = React.useState(null);
   const [sentimentScore, setSentimentScore] = React.useState(0)
   const [sentimentResult, setSentimentResult] = React.useState('')
+  const [userSentiment, setUserSentiment] = React.useState(0)
+  const [userSentimentResult, setUserSentimentResult] = React.useState(0)
 
   async function loadModel(url) {
     try {
@@ -75,13 +78,30 @@ function App() {
 
   }
 
+  const userSentimentFunc = (sentence) => {
+
+    if (sentence === '') { return }
+
+    const newScore = getSentimentScore(sentence);
+
+    setUserSentiment(newScore)
+
+    if (newScore > 0.65) { setUserSentimentResult('POSITIVE') }
+    if (newScore < 0.35) { setUserSentimentResult('NEGATIVE') }
+    if (newScore > 0.35 && newScore < 0.65) { setUserSentimentResult('NEUTRAL') }
+
+    setUserInput('')
+  }
+
+  const getTweets = async() => {
+    const {data} = await axios.get('api/tweets')
+    setTweets(data)
+    setTweetsVisible(true)
+  }
+
 
   React.useEffect(() => {
-    const getTweets = async() => {
-      const {data} = await axios.get('api/tweets')
-      setTweets(data)
-      setTweetsVisible(true)
-    }
+
     getTweets()
 
     tf.ready().then(
@@ -109,13 +129,25 @@ function App() {
       :
       <div className="main-content-container">
         <div className='user-input-container'>
-          <input type="text" />
-          <button onClick={() => getSentimentScore('i had a good day')}>Test model</button>
+          <div className="user-input-field-container">
+            <p>Enter a sentence</p>
+            <input type="text" onChange={(e) => setUserInput(e.target.value)} value={userInput}/>
+          </div>
+          <div className='tweet-sentiment-container'>
+            <p>Sentiment Score: {userSentiment ? userSentiment : ''}</p>
+            <p className={userSentimentResult}>Sentiment Result: <span>{userSentimentResult}</span></p>
+          </div>
+          <div className='user-input-result-container'>
+            <button id='tweet-analysis-button' type="submit" onClick={() => {
+              userSentimentFunc(userInput)
+            }}>Run Sentiflow</button>
+          </div>
         </div>
         <div className='tweet-analysis-container'>
           <div className='tweet-container'>
             <div className="tweet-list-container">
-              <h2>Most recent 100 Tweets</h2>
+              <h2>Most recent 400 Tweets</h2>
+              <small>(#ES_F, #NQ_F, #SPY, @Deltaone)</small>
               {!tweetsVisible ?
                 <Blocks
                   height="200"
@@ -140,6 +172,7 @@ function App() {
           </div>
           <div className='button-container'>
             <button id='tweet-analysis-button' onClick={() => {
+              getTweets();
               setTweetsVisible(true)
               sentimentLoop();
             }}>Run Sentiflow</button>
