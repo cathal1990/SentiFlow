@@ -134,7 +134,7 @@ function App() {
             <input type="text" onChange={(e) => setUserInput(e.target.value)} value={userInput}/>
           </div>
           <div className='tweet-sentiment-container'>
-            <p>Sentiment Score: {userSentiment ? userSentiment : ''}</p>
+            <p>Sentiment Score: {userSentiment ? userSentiment.toFixed(3) : ''}</p>
             <p className={userSentimentResult}>Sentiment Result: <span>{userSentimentResult}</span></p>
           </div>
           <div className='user-input-result-container'>
