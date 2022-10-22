@@ -49,30 +49,6 @@ router.get("/", async (req, res, next) => {
 
     res.send(results.flat())
 
-    // const result = await needle('get', endpointUrl, params, {
-    //     headers: {
-    //         "User-Agent": "v2RecentSearchJS",
-    //         "authorization": `Bearer ${'AAAAAAAAAAAAAAAAAAAAADWLhgEAAAAAPLW6bDzXq7msHWXxjsDUZ7yanVY%3D9YU2MZl0i3bwbvmoBxcmKQFssbMWGDTZTemJR73s0PggODLnVd'}`
-    //     }
-    // })
-
-
-
-    // const sentences = result.body.data.map(tweet => tweet.text);
-    // let mlValues;
-
-    // // Load the model.
-    // use.load().then(model => {
-    //     // Embed an array of sentences.
-    //     const sentences = data.map(tweet => tweet.text);
-    //     model.embed(sentences).then(embeddings => {
-    //       // `embeddings` is a 2D tensor consisting of the 512-dimensional embeddings for each sentence.
-    //       // So in this example `embeddings` has the shape [2, 512].
-    //       embeddings.print(true /* verbose */);
-    //       console.log(embeddings.values)
-    //     })
-    // });
-
 
   } catch (error) {
     next(error);
