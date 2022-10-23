@@ -22,7 +22,7 @@ Created with Tensorflow.js, React, Express and Twitter API, this app was created
 
 ## Creators
 
-Sentilow was created by Cathal O Cuinneagain as a senior solo project for the Full-time Immersive Web Development course at Fullstack Academy.
+Sentiflow was created by Cathal O Cuinneagain as a senior solo project for the Full-time Immersive Web Development course at Fullstack Academy.
 
 | <img style="border-radius:50%; height: 150px" src="https://i.imgur.com/Rb1R3Ou.jpg">
 |:-------------:|
