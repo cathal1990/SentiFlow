@@ -22,7 +22,7 @@ router.get("/", async (req, res, next) => {
         const result = await needle('get', endpointUrl, loopParams, {
           headers: {
               "User-Agent": "v2RecentSearchJS",
-              "authorization": `Bearer ${'AAAAAAAAAAAAAAAAAAAAADWLhgEAAAAAPLW6bDzXq7msHWXxjsDUZ7yanVY%3D9YU2MZl0i3bwbvmoBxcmKQFssbMWGDTZTemJR73s0PggODLnVd'}`
+              "authorization": `Bearer ${process.env.TWITTER_BEARER_TOKEN}`
           }
         })
         if (!result.body) throw new Error("Couldn't find user")
@@ -37,7 +37,7 @@ router.get("/", async (req, res, next) => {
         const result = await needle('get', userEndpointUrl, loopParams, {
           headers: {
               "User-Agent": "v2RecentSearchJS",
-              "authorization": `Bearer ${'AAAAAAAAAAAAAAAAAAAAADWLhgEAAAAAPLW6bDzXq7msHWXxjsDUZ7yanVY%3D9YU2MZl0i3bwbvmoBxcmKQFssbMWGDTZTemJR73s0PggODLnVd'}`
+              "authorization": `Bearer ${process.env.TWITTER_BEARER_TOKEN}`
           }
         })
 
