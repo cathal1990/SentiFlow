@@ -12,13 +12,4 @@ const requireToken = async (req, res, next) => {
   }
 };
 
-// router.get("/", requireToken, async (req, res, next) => {
-//   try {
-
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
-
 module.exports = router;
