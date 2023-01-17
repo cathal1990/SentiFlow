@@ -9,8 +9,6 @@
 Sentiflow is a web app that analyses hundreds of recent financial markets related tweets using Tensorflow.js machine learning and Twitter API to give an average sentiment score and a positive, negative or neutral result. 
 Users can also enter their own input to get a sentiment score from the model.
 
-Created with Tensorflow.js, React, Express and Twitter API, this app was created completely from scratch. Feel free to view it deployed here: https://sentiflow.up.railway.app/
-
 ## Technologies
 
 * Node.js
