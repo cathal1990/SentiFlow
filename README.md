@@ -1,6 +1,6 @@
 ## Sentiflow
 
-*** NO LONGER DEPLOYED DUE TO TWITTER API ACCESS CHANGES ***
+<b>*** NO LONGER DEPLOYED DUE TO TWITTER API ACCESS CHANGES ***</b>
 
 <img style='width: 600px' src='https://i.imgur.com/PgCJ6vn.png'>
 
